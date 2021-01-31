@@ -66,6 +66,7 @@ function sendTelegram($method, $data, $chat_id, $headers = []) {
     $k = 0;
     foreach($db as $chat_id => $user) {
       $video = $user['video'];
+      $name = $user['user'];
       // учитываем ограничение рассылки - не более 30 сообщение в секунду  
       $k++;
       if ($k == 30) {
@@ -83,6 +84,7 @@ function sendTelegram($method, $data, $chat_id, $headers = []) {
         sendTelegram($method, $message5_now, $chat_id);
         sendTelegram($method, $qustion_1, $chat_id);
       }
+      removeUser($chat_id);
     }
   }
   
