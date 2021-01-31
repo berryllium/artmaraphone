@@ -1,6 +1,5 @@
 <?php
 // подключаем конфиг и функции
-require_once('config.php');
 require_once('messages.php');
 require_once('functions.php');
 // получаем и обрабатываем данные
@@ -30,6 +29,7 @@ if($text == '/start') {
   switch ($button) {
     case 'lesson_1_later':
       sendTelegram($method, $message3_later, $chat_id);
+      $video = 1;
       break;
     case 'lesson_1_now': 
       sendTelegram($method, $message3_now, $chat_id);
@@ -37,6 +37,7 @@ if($text == '/start') {
       break;
     case 'lesson_2_later': 
       sendTelegram($method, $message4_later, $chat_id);
+      $video = 2;
       break;
     case 'lesson_2_now': 
       sendTelegram($method, $message4_now, $chat_id);
@@ -44,6 +45,7 @@ if($text == '/start') {
       break;
     case 'lesson_3_later': 
       sendTelegram($method, $message5_later, $chat_id);
+      $video = 3;
       break;
     case 'lesson_3_now': 
       sendTelegram($method, $message5_now, $chat_id);
@@ -74,6 +76,6 @@ if($text == '/start') {
 
 
 // если пользователя запустил бота, а чата с ним не в базе - добавляем в базу
-if($text == '/start') saveUser($chat_id, $user_name);
+saveUser($chat_id, $user_name, $video);
 // если пользователь остановил бота - удаляем чат с ним из базы
 if($text == '/stop') removeUser($chat_id);

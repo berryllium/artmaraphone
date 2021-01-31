@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+require_once('config.php');
 
 function sendTelegram($method, $data, $chat_id, $headers = []) {
     $data['chat_id'] = $chat_id;
@@ -31,9 +35,9 @@ function sendTelegram($method, $data, $chat_id, $headers = []) {
     return false;
   }
   
-  function saveUser($chat_id, $user_name = '') {
+  function saveUser($chat_id, $user_name = '', $video = 0) {
     $db = getDB();
-    $db[$chat_id] = $user_name;
+    $db[$chat_id] = ['user' => $user_name, 'video' => $video];
     setDB($db);
     return false;
   }
@@ -56,22 +60,29 @@ function sendTelegram($method, $data, $chat_id, $headers = []) {
   }
   
   function massSend() {
+    require_once('messages.php');
     $db = getDB();
     if(!count($db)) return false;
     $k = 0;
-    foreach($db as $chat_id => $user_name) {
+    foreach($db as $chat_id => $user) {
+      $video = $user['video'];
       // учитываем ограничение рассылки - не более 30 сообщение в секунду  
       $k++;
       if ($k == 30) {
           sleep(1);
           $k = 0;
       }
-      if($user_name) {
-        $message = str_replace('#name#', $user_name, MESSAGE);
-      } else {
-        $message = MESSAGE_WITHOUT_NAME;
+      $method = 'sendMessage';
+      if($video == 1) {
+        sendTelegram($method, $message3_now, $chat_id);
+        sendTelegram($method, $message2_2, $chat_id);
+      } elseif($video == 2) {
+        sendTelegram($method, $message4_now, $chat_id);
+        sendTelegram($method, $message2_3, $chat_id);
+      } elseif($video == 3) {
+        sendTelegram($method, $message5_now, $chat_id);
+        sendTelegram($method, $qustion_1, $chat_id);
       }
-      sendMessage($chat_id, $message);
     }
   }
   
