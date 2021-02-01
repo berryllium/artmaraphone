@@ -9,7 +9,9 @@ $link_tg = 'https://t.me/Olga_privalova_art';
 
 $day = date('H') > 17 ? 'завтра' : 'сегодня';
 
-$message_hello = 'Просмотри видео';
+$message_hello = [
+    'text' => 'Посмотри видео!',
+];
 
 $message_default = 'Извините, этого я не умею';
 

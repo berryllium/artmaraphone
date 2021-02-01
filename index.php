@@ -31,15 +31,36 @@ if($text == '/start') {
 } elseif($button) {
   switch ($button) {
     case 'lesson_1_later':
+      saveUser($chat_id, $user_name, 1);
       sendTelegram($method, $message3_later, $chat_id);
       $video = 1;
-      // если пользователя запустил бота, а чата с ним не в базе - добавляем в базу
-      saveUser($chat_id, $user_name, 1);
       break;
     case 'lesson_1_now': 
+      removeUser($chat_id);
       sendTelegram($method, $message3_now, $chat_id);
+      sleep(3600);
+      sendTelegram($method, $message2_2, $chat_id);
+      break;
+    case 'lesson_2_later': 
+      saveUser($chat_id, $user_name, 2);
+      sendTelegram($method, $message4_later, $chat_id);
+      $video = 2;
+      break;
+    case 'lesson_2_now': 
+      removeUser($chat_id);
       sendTelegram($method, $message4_now, $chat_id);
+      sleep(3600);
+      sendTelegram($method, $message2_3, $chat_id);
+      break;
+    case 'lesson_3_later': 
+      saveUser($chat_id, $user_name, 3);
+      sendTelegram($method, $message5_later, $chat_id);
+      $video = 3;
+      break;
+    case 'lesson_3_now': 
+      removeUser($chat_id);
       sendTelegram($method, $message5_now, $chat_id);
+      sleep(3600);
       sendTelegram($method, $qustion_1, $chat_id);
       break;
     case 'q1_n': 

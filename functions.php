@@ -1,6 +1,7 @@
 <?php
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
+set_time_limit(5000);
 error_reporting(E_ALL);
 require_once('config.php');
 
@@ -75,15 +76,16 @@ function sendTelegram($method, $data, $chat_id, $headers = []) {
       }
       $method = 'sendMessage';
       if($video == 1) {
-        $video ++;
         sendTelegram($method, $message3_now, $chat_id);
-        saveUser($chat_id, $name, $video);
+        sleep(3600);
+        sendTelegram($method, $message2_2, $chat_id);
       } elseif($video == 2) {
-        $video++;
         sendTelegram($method, $message4_now, $chat_id);
-        saveUser($chat_id, $name, $video);
+        sleep(3600);
+        sendTelegram($method, $message2_3, $chat_id);
       } elseif($video == 3) {
         sendTelegram($method, $message5_now, $chat_id);
+        sleep(3600);
         sendTelegram($method, $qustion_1, $chat_id);
         removeUser($chat_id);
       }
