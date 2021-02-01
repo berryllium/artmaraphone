@@ -55,7 +55,7 @@ function sendTelegram($method, $data, $chat_id, $headers = []) {
       'text' => $message,
       'chat_id' => $chat_id
     ];
-    sendTelegram($method, $sendData);
+    sendTelegram($method, $sendData, $chat_id);
     return false;
   }
   
@@ -76,15 +76,16 @@ function sendTelegram($method, $data, $chat_id, $headers = []) {
       $method = 'sendMessage';
       if($video == 1) {
         sendTelegram($method, $message3_now, $chat_id);
-        sendTelegram($method, $message2_2, $chat_id);
+        $video ++;
+        saveUser($chat_id, $name, $video);
       } elseif($video == 2) {
+        $video++;
         sendTelegram($method, $message4_now, $chat_id);
-        sendTelegram($method, $message2_3, $chat_id);
       } elseif($video == 3) {
         sendTelegram($method, $message5_now, $chat_id);
         sendTelegram($method, $qustion_1, $chat_id);
+        removeUser($chat_id);
       }
-      removeUser($chat_id);
     }
   }
   

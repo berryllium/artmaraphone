@@ -33,21 +33,7 @@ if($text == '/start') {
       break;
     case 'lesson_1_now': 
       sendTelegram($method, $message3_now, $chat_id);
-      sendTelegram($method, $message2_2, $chat_id);
-      break;
-    case 'lesson_2_later': 
-      sendTelegram($method, $message4_later, $chat_id);
-      $video = 2;
-      break;
-    case 'lesson_2_now': 
       sendTelegram($method, $message4_now, $chat_id);
-      sendTelegram($method, $message2_3, $chat_id);
-      break;
-    case 'lesson_3_later': 
-      sendTelegram($method, $message5_later, $chat_id);
-      $video = 3;
-      break;
-    case 'lesson_3_now': 
       sendTelegram($method, $message5_now, $chat_id);
       sendTelegram($method, $qustion_1, $chat_id);
       break;
@@ -76,6 +62,6 @@ if($text == '/start') {
 
 
 // если пользователя запустил бота, а чата с ним не в базе - добавляем в базу
-saveUser($chat_id, $user_name, $video);
+saveUser($chat_id, $user_name, 1);
 // если пользователь остановил бота - удаляем чат с ним из базы
 if($text == '/stop') removeUser($chat_id);
