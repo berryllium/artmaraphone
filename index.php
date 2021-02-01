@@ -1,4 +1,5 @@
 <?php
+// регистрируем бота https://api.telegram.org/bot1607556385:AAE1gSv474_2_cVvazTpW-D4UoBhHj3U68Q?url=https://freestuff47.ru/workzilla/artmaraphone/index.php
 // подключаем конфиг и функции
 require_once('messages.php');
 require_once('functions.php');
@@ -24,12 +25,16 @@ $method = 'sendMessage';
 
 if($text == '/start') {
   sendTelegram($method, $message1, $chat_id);
+  sendTelegram($method, $message_hello, $chat_id);
+  sleep(180);
   sendTelegram($method, $message2_1, $chat_id);
 } elseif($button) {
   switch ($button) {
     case 'lesson_1_later':
       sendTelegram($method, $message3_later, $chat_id);
       $video = 1;
+      // если пользователя запустил бота, а чата с ним не в базе - добавляем в базу
+      saveUser($chat_id, $user_name, 1);
       break;
     case 'lesson_1_now': 
       sendTelegram($method, $message3_now, $chat_id);
@@ -60,8 +65,5 @@ if($text == '/start') {
   }
 }
 
-
-// если пользователя запустил бота, а чата с ним не в базе - добавляем в базу
-saveUser($chat_id, $user_name, 1);
 // если пользователь остановил бота - удаляем чат с ним из базы
 if($text == '/stop') removeUser($chat_id);

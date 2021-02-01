@@ -1,13 +1,15 @@
 <?php
 
-$link_hello = 'https://www.youtube.com/watch?v=6WOxNwv0SvE';
-$link_1 = 'https://www.youtube.com/watch?v=9OBStGhbhA0';
-$link_2 = 'https://www.youtube.com/watch?v=pwfKLfqoMeM';
-$link_3 = 'https://www.youtube.com/watch?v=KpoichJc-9Q';
-$link_4 = 'https://yandex.ru';
+$link_hello = 'https://www.youtube.com/watch?v=Enp9X-BIYUM&feature=youtu.be';
+$link_1 = 'https://www.youtube.com/watch?v=QbiJ_DX_kFU&feature=youtu.be';
+$link_2 = 'https://www.youtube.com/watch?v=7cdkfiV3HXE&feature=youtu.be';
+$link_3 = 'https://www.youtube.com/watch?v=7cdkfiV3HXE&feature=youtu.be';
+$link_4 = 'http://mircourse.ru/pprj';
 $link_tg = 'https://t.me/Olga_privalova_art';
 
 $day = date('H') > 17 ? 'завтра' : 'сегодня';
+
+$message_hello = 'Просмотри видео';
 
 $message_default = 'Извините, этого я не умею';
 
